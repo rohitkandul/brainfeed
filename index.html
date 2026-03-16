@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainFeed — Become the Smartest Person in the Room</title>
+    <meta name="description" content="24 AI-curated articles. 8 knowledge domains. 1 WhatsApp message. Every morning. Just ₹50/month.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#0a0a0f; --card:#12121a; --card2:#1a1a28; --accent:#00ff88; --glow:rgba(0,255,136,.15); --text:#f0f0f5; --dim:#8888aa; --muted:#555577; --border:#2a2a3a; --red:#ff4466; --mono:'Space Mono',monospace; --sans:'DM Sans',sans-serif; }
+        *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
+        body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+        body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(0,255,136,.03) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(0,100,255,.03) 0%,transparent 50%),repeating-linear-gradient(0deg,transparent,transparent 100px,rgba(255,255,255,.01) 100px,rgba(255,255,255,.01) 101px),repeating-linear-gradient(90deg,transparent,transparent 100px,rgba(255,255,255,.01) 100px,rgba(255,255,255,.01) 101px);pointer-events:none;z-index:0}
+        .c{max-width:800px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+        nav{padding:20px 0;display:flex;justify-content:space-between;align-items:center}
+        .logo{font-family:var(--mono);font-size:1.3rem;font-weight:700;color:var(--accent);letter-spacing:-1px} .logo span{color:var(--text)}
+        .nav-p{font-family:var(--mono);font-size:.8rem;color:var(--dim);border:1px solid var(--border);padding:6px 14px;border-radius:100px} .nav-p strong{color:var(--accent)}
+        .hero{padding:80px 0 60px;text-align:center}
+        .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.75rem;color:var(--accent);background:var(--glow);border:1px solid rgba(0,255,136,.2);padding:8px 18px;border-radius:100px;margin-bottom:32px;animation:pb 3s ease-in-out infinite}
+        @keyframes pb{0%,100%{border-color:rgba(0,255,136,.2)}50%{border-color:rgba(0,255,136,.5)}}
+        .hero h1{font-family:var(--mono);font-size:clamp(2rem,6vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:24px;letter-spacing:-2px}
+        .hl{color:var(--accent);position:relative} .hl::after{content:'';position:absolute;bottom:-2px;left:0;width:100%;height:3px;background:var(--accent);opacity:.4}
+        .hero-sub{font-size:1.15rem;color:var(--dim);max-width:560px;margin:0 auto 40px;line-height:1.7}
+        .stats{display:flex;justify-content:center;gap:40px;margin-bottom:48px;flex-wrap:wrap}
+        .stat-n{font-family:var(--mono);font-size:2rem;font-weight:700} .stat-l{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+        .signup-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 32px;position:relative;overflow:hidden;margin-bottom:60px}
+        .signup-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+        .signup-card h2{font-family:var(--mono);font-size:1.4rem;margin-bottom:8px;letter-spacing:-1px} .subtitle{color:var(--dim);margin-bottom:28px;font-size:.95rem}
+        .fg{margin-bottom:16px} .fg label{display:block;font-size:.8rem;font-family:var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+        .fg input{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:1rem;transition:all .2s;outline:none}
+        .fg input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)} .fg input::placeholder{color:var(--muted)}
+        .pw{display:flex;gap:10px} .pw .cc{width:90px;flex-shrink:0;text-align:center}
+        .btn{width:100%;padding:16px;background:var(--accent);color:var(--bg);border:none;border-radius:10px;font-family:var(--mono);font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:8px;letter-spacing:-.5px}
+        .btn:hover{background:#00ffaa;transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,255,136,.2)} .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+        .btn.ld .bt{display:none} .btn.ld .sp{display:inline-block}
+        .sp{display:none;width:20px;height:20px;border:2px solid transparent;border-top-color:var(--bg);border-radius:50%;animation:spin .6s linear infinite;margin:0 auto}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .fn{text-align:center;font-size:.8rem;color:var(--muted);margin-top:14px} .fn strong{color:var(--accent)}
+        .ss{display:none;text-align:center;padding:20px 0} .ss.on{display:block;animation:fi .4s ease}
+        @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        .ss .si{font-size:3rem;margin-bottom:16px} .ss h3{font-family:var(--mono);font-size:1.3rem;margin-bottom:8px;color:var(--accent)} .ss p{color:var(--dim);font-size:.95rem;line-height:1.7}
+        .ss .sandbox-box{background:var(--bg);border:1px solid var(--accent);border-radius:10px;padding:16px;margin:16px 0;text-align:left;font-size:.85rem;line-height:1.8}
+        .ss .sandbox-box code{background:#1a1a28;padding:2px 8px;border-radius:4px;color:var(--accent);font-family:var(--mono);font-size:.8rem}
+        .err{color:var(--red);font-size:.85rem;margin-top:8px;display:none} .err.on{display:block}
+        section h2{font-family:var(--mono);font-size:1.5rem;text-align:center;margin-bottom:12px;letter-spacing:-1px}
+        .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:60px}
+        .sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:all .25s}
+        .sc:hover{background:var(--card2);border-color:var(--accent);transform:translateY(-2px)}
+        .sc .em{font-size:1.8rem;margin-bottom:10px;display:block} .sc h3{font-family:var(--mono);font-size:.85rem;margin-bottom:6px;letter-spacing:-.5px} .sc p{font-size:.8rem;color:var(--muted);line-height:1.5}
+        .steps{display:flex;flex-direction:column;margin-bottom:60px}
+        .step{display:flex;gap:20px;padding:24px 0;position:relative}
+        .step:not(:last-child)::after{content:'';position:absolute;left:19px;top:60px;bottom:-12px;width:1px;background:var(--border)}
+        .sn{width:40px;height:40px;border-radius:50%;background:var(--glow);border:1px solid rgba(0,255,136,.3);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.85rem;font-weight:700;color:var(--accent);flex-shrink:0}
+        .step h3{font-family:var(--mono);font-size:.95rem;margin-bottom:4px;letter-spacing:-.5px} .step p{font-size:.9rem;color:var(--dim)}
+        .wa-mock{background:#0b141a;border-radius:16px;max-width:420px;margin:0 auto 60px;overflow:hidden;border:1px solid #1f2c34}
+        .wa-h{background:#1f2c34;padding:12px 16px;display:flex;align-items:center;gap:10px}
+        .wa-av{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+        .wa-n{font-weight:600;font-size:.95rem} .wa-s{font-size:.75rem;color:var(--muted)}
+        .wa-b{padding:16px} .wa-bb{background:#1f2c34;border-radius:0 12px 12px 12px;padding:12px 14px;font-size:.85rem;line-height:1.6;color:#e9edef}
+        .wa-bb strong{color:#fff} .wa-st{color:var(--accent);font-weight:700} .wa-lk{color:#53bdeb;word-break:break-all;font-size:.8rem}
+        .wa-bb hr{border:none;border-top:1px solid #2a3942;margin:10px 0} .wa-t{text-align:right;font-size:.7rem;color:#667781;margin-top:4px}
+        .pc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:600px;margin:0 auto 60px}
+        .pk{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px 24px;text-align:center}
+        .pk.ft{border-color:var(--accent);position:relative}
+        .pk.ft::before{content:'BEST VALUE';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:.65rem;font-weight:700;padding:4px 16px;border-radius:100px;letter-spacing:1px}
+        .pn{font-family:var(--mono);font-size:.85rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+        .pr{font-family:var(--mono);font-size:2.5rem;font-weight:700;margin-bottom:4px} .ps{font-size:.85rem;color:var(--muted);margin-bottom:20px} .ps .sv{color:var(--accent);font-weight:600}
+        .pk ul{list-style:none;text-align:left;margin-bottom:24px} .pk li{padding:6px 0;font-size:.9rem;color:var(--dim);display:flex;align-items:center;gap:8px} .pk li::before{content:'✓';color:var(--accent);font-weight:700}
+        .faq{margin-bottom:60px} .fi{border-bottom:1px solid var(--border);padding:20px 0}
+        .fq{font-family:var(--mono);font-size:.9rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+        .fq::after{content:'+';color:var(--accent);font-size:1.2rem;flex-shrink:0;transition:transform .2s}
+        .fi.op .fq::after{transform:rotate(45deg)}
+        .fa{max-height:0;overflow:hidden;transition:max-height .3s;font-size:.9rem;color:var(--dim);line-height:1.7} .fi.op .fa{max-height:200px;padding-top:12px}
+        .cta{padding:80px 0 40px;text-align:center} .cta p{color:var(--dim);margin-bottom:24px} .cta .btn{max-width:360px;margin:0 auto;display:block;text-decoration:none}
+        footer{padding:40px 0;text-align:center;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+        @media(max-width:600px){.hero{padding:50px 0 40px}.stats{gap:24px}.signup-card{padding:28px 20px}.sg{grid-template-columns:1fr 1fr;gap:8px}.sc{padding:14px}.sc p{display:none}.pc{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+<div class="c">
+    <nav><div class="logo">Brain<span>Feed</span></div><div class="nav-p">3 days free → <strong>₹50/mo</strong></div></nav>
+
+    <section class="hero">
+        <div class="badge">📡 LIVE — Delivering daily intelligence briefings</div>
+        <h1>Become the <span class="hl">smartest person</span><br>in every room</h1>
+        <p class="hero-sub">24 AI-curated articles across 8 knowledge domains. Summarized and delivered to your WhatsApp every morning. Takes 2 minutes to read.</p>
+        <div class="stats">
+            <div><div class="stat-n">24</div><div class="stat-l">Articles/Day</div></div>
+            <div><div class="stat-n">8</div><div class="stat-l">Domains</div></div>
+            <div><div class="stat-n">2 min</div><div class="stat-l">To Read</div></div>
+            <div><div class="stat-n">₹50</div><div class="stat-l">/Month</div></div>
+        </div>
+    </section>
+
+    <div class="signup-card" id="signup">
+        <h2>Start your free 3-day trial</h2>
+        <p class="subtitle">No payment needed. First briefing arrives tomorrow morning.</p>
+        <form id="sf">
+            <div class="fg"><label>Your Name</label><input type="text" id="name" placeholder="e.g., Rohit" required></div>
+            <div class="fg"><label>WhatsApp Number</label><div class="pw"><input type="text" class="cc" id="cc" value="+91" placeholder="+91"><input type="tel" id="phone" placeholder="98765 43210" required></div></div>
+            <div class="fg"><label>Email <span style="color:var(--muted)">(optional)</span></label><input type="email" id="email" placeholder="you@example.com"></div>
+            <button type="submit" class="btn" id="sb"><span class="bt">Start Free Trial →</span><span class="sp"></span></button>
+            <div class="err" id="err"></div>
+            <p class="fn">🔒 No spam. No sharing. <strong>3 days completely free.</strong></p>
+        </form>
+        <div class="ss" id="suc">
+            <div class="si">🧠</div>
+            <h3>You're in!</h3>
+            <div class="sandbox-box">
+                <strong>📲 One quick step to receive messages:</strong><br><br>
+                1. Save this number in your contacts: <code>+14155238886</code><br>
+                2. Open WhatsApp and send this exact message to that number:<br>
+                <code id="joinCode">join purple-fox</code><br>
+                3. You'll get a confirmation reply — then you're all set!<br><br>
+                <em style="color:var(--muted)">Your first daily briefing arrives tomorrow at 7:30 AM.</em>
+            </div>
+        </div>
+    </div>
+
+    <section><h2>8 Domains. Zero Blind Spots.</h2><p class="subtitle" style="text-align:center;color:var(--dim);margin-bottom:36px">Curated to make you dangerous in any conversation.</p>
+    <div class="sg">
+        <div class="sc"><span class="em">🔧</span><h3>Tech & AI</h3><p>Industry shifts, AI breakthroughs, software trends</p></div>
+        <div class="sc"><span class="em">🌍</span><h3>Geopolitics</h3><p>Power dynamics, trade wars, global diplomacy</p></div>
+        <div class="sc"><span class="em">💡</span><h3>Philosophy</h3><p>Ethics, critical thinking, deep ideas</p></div>
+        <div class="sc"><span class="em">🚀</span><h3>Entrepreneurship</h3><p>Founder stories, funding, startup strategy</p></div>
+        <div class="sc"><span class="em">🧠</span><h3>Behavioral Econ</h3><p>Decision science, cognitive biases, nudge theory</p></div>
+        <div class="sc"><span class="em">⚡</span><h3>Climate Tech</h3><p>Clean energy, carbon markets, transition plays</p></div>
+        <div class="sc"><span class="em">🇮🇳</span><h3>India Business</h3><p>Economy, startups, policy, tech ecosystem</p></div>
+        <div class="sc"><span class="em">📚</span><h3>History & Strategy</h3><p>Leadership lessons, strategic thinking, war rooms</p></div>
+    </div></section>
+
+    <section><h2>How It Works</h2>
+    <div class="steps">
+        <div class="step"><div class="sn">1</div><div><h3>Our AI scans 200+ sources at 6 AM</h3><p>Google News, RSS feeds, niche publications — filtered for signal.</p></div></div>
+        <div class="step"><div class="sn">2</div><div><h3>Claude AI writes executive summaries</h3><p>Each article condensed into 1-2 punchy sentences. The "so what."</p></div></div>
+        <div class="step"><div class="sn">3</div><div><h3>Delivered to WhatsApp at 7:30 AM</h3><p>24 articles, 8 domains, ready to scan over morning coffee.</p></div></div>
+        <div class="step"><div class="sn">4</div><div><h3>You walk into meetings differently</h3><p>Reference an AI breakthrough, a geopolitical shift, and a behavioral insight — before 8 AM.</p></div></div>
+    </div></section>
+
+    <section><h2>Here's What You'll Get</h2><p class="subtitle" style="text-align:center;color:var(--dim);margin-bottom:32px">A sample from a recent morning briefing.</p>
+    <div class="wa-mock"><div class="wa-h"><div class="wa-av">🧠</div><div><div class="wa-n">BrainFeed</div><div class="wa-s">online</div></div></div>
+    <div class="wa-b"><div class="wa-bb"><strong>🧠 BRAINFEED DAILY BRIEFING</strong><br><em>2026-03-16</em><hr>
+    <span class="wa-st">🔧 Tech & AI</span><br><br><strong>1. OpenAI Shifts Strategy to Open-Source</strong><br>📰 The Verge<br>OpenAI's pivot signals defensive positioning as Meta and Google gain ground. The moat was never the model — it was distribution.<br><span class="wa-lk">🔗 https://theverge.com/...</span><br><br>
+    <strong>2. India's UPI Hits 20B Transactions</strong><br>📰 Economic Times<br>UPI crossing 20B monthly makes India the world's largest real-time payments market.<br><span class="wa-lk">🔗 https://economictimes.com/...</span><hr><em style="font-size:.8rem;color:#667781">...6 more sections below</em></div><div class="wa-t">7:30 AM ✓✓</div></div></div></section>
+
+    <section id="pricing"><h2>Less Than 1 Chai Per Day</h2>
+    <div class="pc">
+        <div class="pk"><div class="pn">Monthly</div><div class="pr">₹50</div><div class="ps">per month</div><ul><li>24 articles daily</li><li>8 knowledge domains</li><li>AI-powered summaries</li><li>WhatsApp delivery</li></ul></div>
+        <div class="pk ft"><div class="pn">Yearly</div><div class="pr">₹499</div><div class="ps">per year — <span class="sv">save 17%</span></div><ul><li>Everything in Monthly</li><li>Weekend deep-dives</li><li>Priority support</li><li>Founder's badge</li></ul></div>
+    </div></section>
+
+    <section class="faq"><h2>Questions</h2>
+        <div class="fi"><div class="fq">What makes this different from Google News or newsletters?</div><div class="fa">Most newsletters cover 1-2 domains. BrainFeed covers 8 — specifically chosen to create cross-domain insight. Plus, it's on WhatsApp, not buried in email.</div></div>
+        <div class="fi"><div class="fq">What time does the briefing arrive?</div><div class="fa">Every morning at 7:30 AM IST. Designed for your morning coffee.</div></div>
+        <div class="fi"><div class="fq">How do I cancel?</div><div class="fa">Reply "STOP" on WhatsApp anytime. Instant cancellation, no questions.</div></div>
+        <div class="fi"><div class="fq">Is my WhatsApp number safe?</div><div class="fa">100%. We never share or sell your number. No spam, ever.</div></div>
+    </section>
+
+    <section class="cta"><h2>Tomorrow morning, you'll<br>know things others don't.</h2><p>Free for 3 days. Then ₹50/month. Cancel anytime.</p><a href="#signup" class="btn">Start Free Trial →</a></section>
+    <footer><p>BrainFeed © 2026. Built with obsession for knowledge.</p></footer>
+</div>
+<script>
+// ===== REPLACE THIS WITH YOUR APPS SCRIPT WEB APP URL =====
+const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwssR02KmXORPt76bd4sJ2R2CcrZwNlbh8Lm2DiEQJJKvTOtknTYZEUJt0g0tQO2RDMkQ/exec';
+// ===== REPLACE THIS WITH YOUR TWILIO SANDBOX JOIN CODE =====
+const SANDBOX_JOIN_CODE = 'join purple-fox';
+// ===========================================================
+
+document.getElementById('joinCode').textContent = SANDBOX_JOIN_CODE;
+
+document.getElementById('sf').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var cc = document.getElementById('cc').value.trim();
+    var phone = document.getElementById('phone').value.trim().replace(/\s/g, '');
+    var email = document.getElementById('email').value.trim();
+    if (!name || name.length < 2) { showErr('Please enter your name.'); return; }
+    if (!phone || phone.length < 8) { showErr('Please enter a valid WhatsApp number.'); return; }
+    var btn = document.getElementById('sb');
+    btn.classList.add('ld'); btn.disabled = true; hideErr();
+    try {
+        await fetch(WEBAPP_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ action:'signup', name:name, phone:cc+phone, email:email, source:window.location.href, timestamp:new Date().toISOString() })
+        });
+        document.getElementById('sf').style.display = 'none';
+        document.getElementById('suc').classList.add('on');
+    } catch(err) { showErr('Something went wrong. Please try again.'); }
+    finally { btn.classList.remove('ld'); btn.disabled = false; }
+});
+function showErr(m) { var e=document.getElementById('err'); e.textContent=m; e.classList.add('on'); }
+function hideErr() { document.getElementById('err').classList.remove('on'); }
+document.querySelectorAll('.fi').forEach(function(item) { item.querySelector('.fq').addEventListener('click', function() { document.querySelectorAll('.fi').forEach(function(i) { if(i!==item)i.classList.remove('op'); }); item.classList.toggle('op'); }); });
+document.querySelectorAll('a[href^="#"]').forEach(function(a) { a.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'}); }); });
+</script>
+</body>
+</html>
